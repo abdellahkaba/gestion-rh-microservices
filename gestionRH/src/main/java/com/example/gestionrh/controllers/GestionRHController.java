@@ -1,10 +1,13 @@
 package com.example.gestionrh.controllers;
 
 import com.example.gestionrh.entities.GestionnaireRH;
+import com.example.gestionrh.exceptions.EmailAlreadyExistsException;
 import com.example.gestionrh.exceptions.GestionnaireRHNotFoundException;
+import com.example.gestionrh.exceptions.PhoneAlreadyExistsException;
 import com.example.gestionrh.services.GestionRHService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,8 +39,15 @@ public class GestionRHController {
      * @return l'entité sauvegardée
      */
     @PostMapping("/rh")
-    public GestionnaireRH saveGestionnaire(@RequestBody GestionnaireRH gestionnaireRH) {
-        return gestionRHService.saveGestionnaire(gestionnaireRH);
+    public ResponseEntity<?> saveGestionnaire(@RequestBody GestionnaireRH gestionnaireRH) {
+        try {
+            GestionnaireRH createdGestionnaire = gestionRHService.saveGestionnaire(gestionnaireRH);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdGestionnaire);
+        } catch (EmailAlreadyExistsException | PhoneAlreadyExistsException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("An unexpected error occurred");
+        }
     }
 
     /**
@@ -68,8 +78,13 @@ public class GestionRHController {
      * @param id l'identifiant du GestionnaireRH à supprimer
      */
     @DeleteMapping("/rh/{id}")
-    public void deleteRh(@PathVariable int id) {
-        gestionRHService.deleteRH(id);
+    public ResponseEntity<String> deleteRh(@PathVariable int id) {
+        try {
+            gestionRHService.deleteRH(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Gestionnaire supprimé avec succèss");
+        } catch (GestionnaireRHNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 
     /**
@@ -81,8 +96,13 @@ public class GestionRHController {
      * @throws GestionnaireRHNotFoundException si aucun GestionnaireRH n'est trouvé avec cet ID
      */
     @PutMapping("/rh/{id}")
-    public GestionnaireRH updateRH(@PathVariable int id, @RequestBody GestionnaireRH gestionnaireRH) throws GestionnaireRHNotFoundException {
-        return gestionRHService.updateRH(id, gestionnaireRH);
+    public ResponseEntity<?> updateRH(@PathVariable int id, @RequestBody GestionnaireRH gestionnaireRH) {
+        try {
+            GestionnaireRH updatedGestionnaireRH = gestionRHService.updateRH(id, gestionnaireRH);
+            return ResponseEntity.ok(updatedGestionnaireRH);
+        } catch (GestionnaireRHNotFoundException | EmailAlreadyExistsException | PhoneAlreadyExistsException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
 }

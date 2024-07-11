@@ -31,10 +31,10 @@ public class GestionRHService {
      */
     public GestionnaireRH saveGestionnaire(GestionnaireRH gestionnaireRH) {
         if (gestionRHRepository.existsByEmail(gestionnaireRH.getEmail())) {
-            throw new EmailAlreadyExistsException("Email already exists");
+            throw new EmailAlreadyExistsException("Email existe dejà");
         }
         if (gestionRHRepository.existsByPhone(gestionnaireRH.getPhone())) {
-            throw new PhoneAlreadyExistsException("Phone already exists");
+            throw new PhoneAlreadyExistsException("Phone existe dejà");
         }
         return gestionRHRepository.save(gestionnaireRH);
     }
@@ -57,7 +57,7 @@ public class GestionRHService {
      */
     public GestionnaireRH getOne(int id) throws GestionnaireRHNotFoundException {
         return gestionRHRepository.findById(id)
-                .orElseThrow(() -> new GestionnaireRHNotFoundException("Gestionnaire with id " + id + " not found"));
+                .orElseThrow(() -> new GestionnaireRHNotFoundException("Gestionnaire avec id " + id + " non trouvé"));
     }
 
     /**
@@ -65,7 +65,10 @@ public class GestionRHService {
      *
      * @param id l'identifiant du GestionnaireRH à supprimer
      */
-    public void deleteRH(int id) {
+    public void deleteRH(int id) throws GestionnaireRHNotFoundException {
+        if (!gestionRHRepository.existsById(id)) {
+            throw new GestionnaireRHNotFoundException("Gestionnaire with id " + id + " not found");
+        }
         gestionRHRepository.deleteById(id);
     }
 
@@ -85,12 +88,12 @@ public class GestionRHService {
 
         if (!gestionnaireRH.getEmail().equals(detail.getEmail()) &&
                 gestionRHRepository.existsByEmail(detail.getEmail())) {
-            throw new EmailAlreadyExistsException("Email already exists");
+            throw new EmailAlreadyExistsException("Email existe dejà");
         }
 
         if (!gestionnaireRH.getPhone().equals(detail.getPhone()) &&
                 gestionRHRepository.existsByPhone(detail.getPhone())) {
-            throw new PhoneAlreadyExistsException("Phone already exists");
+            throw new PhoneAlreadyExistsException("Phone existe dejà");
         }
 
         // Mise à jour des champs seulement si les nouvelles valeurs ne sont pas nulles

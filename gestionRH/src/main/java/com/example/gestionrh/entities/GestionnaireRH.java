@@ -14,10 +14,13 @@ import lombok.Value;
 public class GestionnaireRH {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false, length = 100)
     private String prenom;
+    @Column(nullable = false, length = 100)
     private String nom;
-    @Column(unique = true)
+    @Column(nullable = false, length = 250, unique = true)
     private String email;
-    @Column(unique = true)
+    @Column(nullable = false, length = 100, unique = true)
     private String phone;
 }
