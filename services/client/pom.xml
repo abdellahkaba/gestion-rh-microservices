@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.isi</groupId>
-    <artifactId>customer</artifactId>
+    <artifactId>client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>customer</name>
-    <description>customer</description>
+    <name>client</name>
+    <description>client</description>
     <url/>
     <licenses>
         <license/>
