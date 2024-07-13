@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: commande-service
+  config:
+    import: optional:configserver:http://localhost:8888
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/commande
+#    username: isi
+#    password: isi
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    database: postgresql
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#server:
+#  port: 8070
+#application:
+#  config:
+#    client-url: http://localhost:8090/api/v1/clients
+#    payement-url: http://localhost:8060/api/v1/payements
+#    produit-url: http://localhost:8050/api/v1/produits
+#

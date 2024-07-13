@@ -10,6 +10,7 @@
         <module name="config-server" />
         <module name="client" />
         <module name="produit" />
+        <module name="commande" />
         <module name="discovery" />
       </profile>
     </annotationProcessing>
@@ -17,6 +18,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="client" options="-parameters" />
+      <module name="commande" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="produit" options="-parameters" />
