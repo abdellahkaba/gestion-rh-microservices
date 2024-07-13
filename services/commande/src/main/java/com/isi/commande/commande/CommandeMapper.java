@@ -14,4 +14,14 @@ public class CommandeMapper {
                 .payementMethode(request.payementMethode())
                 .build();
     }
+
+    public CommandeResponse fromCommande(Commande commande) {
+        return new CommandeResponse(
+               commande.getId(),
+                commande.getReference(),
+                commande.getTotal(),
+                commande.getPayementMethode(),
+                commande.getClientId()
+        );
+    }
 }

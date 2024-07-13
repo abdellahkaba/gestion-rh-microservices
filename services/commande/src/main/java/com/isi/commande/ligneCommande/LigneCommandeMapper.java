@@ -19,4 +19,8 @@ public class LigneCommandeMapper {
                 .produitId(request.produitId())
                 .build();
     }
+
+    public LigneCommandeResponse toLigneCommandeResponse(LigneCommande ligneCommande) {
+        return new LigneCommandeResponse(ligneCommande.getId(),ligneCommande.getQuantite());
+    }
 }
