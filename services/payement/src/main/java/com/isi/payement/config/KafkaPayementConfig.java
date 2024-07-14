@@ -1,4 +1,4 @@
-package com.isi.payement.payement.config;
+package com.isi.payement.config;
 
 
 import org.apache.kafka.clients.admin.NewTopic;

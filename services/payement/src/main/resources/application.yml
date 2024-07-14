@@ -1,1 +1,5 @@
-spring.application.name=payement
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: payement-service
