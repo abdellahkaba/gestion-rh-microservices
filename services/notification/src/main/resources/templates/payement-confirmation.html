@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation de Paiement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 2em;
+            max-width: 600px;
+            margin: 2em auto;
+            text-align: center;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .footer {
+            margin-top: 2em;
+            font-size: 0.9em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Confirmation de Payement</h1>
+    <p>Dear <span th:text="${nomClient}"></span>,</p>
+    <p>Dear <span th:text="${prenomClient}"></span>,</p>
+    <p>Your payment of $<span th:text="${montantTotal}"></span> has been successfully processed.</p>
+    <p>Order reference: <span th:text="${commandeRef}"></span></p>
+    <p>Thank you for choosing our service. If you have any questions, feel free to contact us.</p>
+    <div class="footer">
+        <p>This is an automated message. Please do not reply to this email.</p>
+        <p>&copy; 2024 VotreSiteEcommerce. All rights reserved.</p>
+    </div>
+</div>
+</body>
+</html>
