@@ -13,6 +13,7 @@
         <module name="payement" />
         <module name="client" />
         <module name="commande" />
+        <module name="gateway" />
       </profile>
     </annotationProcessing>
   </component>
@@ -22,6 +23,7 @@
       <module name="commande" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="discovery" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="notification" options="-parameters" />
       <module name="payement" options="-parameters" />
       <module name="produit" options="-parameters" />
