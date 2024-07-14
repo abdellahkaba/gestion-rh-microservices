@@ -8,7 +8,6 @@ import org.springframework.validation.annotation.Validated;
 
 public record Client(
         String id,
-
         @NotNull(message = "le prenom est requis")
         String prenom,
 
