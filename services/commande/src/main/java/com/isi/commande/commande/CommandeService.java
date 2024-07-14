@@ -7,6 +7,8 @@ import com.isi.commande.kafka.CommandeConfirmation;
 import com.isi.commande.kafka.CommandeProducer;
 import com.isi.commande.ligneCommande.LigneCommandeRequest;
 import com.isi.commande.ligneCommande.LigneCommandeService;
+import com.isi.commande.payement.PayementClient;
+import com.isi.commande.payement.PayementRequest;
 import com.isi.commande.produit.ProduitClient;
 import com.isi.commande.produit.PurchaseRequest;
 import jakarta.persistence.EntityNotFoundException;
@@ -25,6 +27,7 @@ public class CommandeService {
     private final CommandeMapper mapper;
     private final CommandeProducer producer;
     private final LigneCommandeService ligneCommandeService;
+    private final PayementClient payementClient;
     public Integer createCommande(CommandeRequest request) {
         //verifier le client -->OpenFeign
 
@@ -48,6 +51,14 @@ public class CommandeService {
         }
 
         //commencer le processus de payement
+        var payementRequest = new PayementRequest(
+                request.total(),
+                request.payementMethode(),
+                commande.getId(),
+                commande.getReference(),
+                client
+        );
+        payementClient.requestCommandePayement(payementRequest);
         //envoie une confirmation de la commande ---> notification-ms(kafka)
         producer.sendCommandeComfirmation(
                 new CommandeConfirmation(

@@ -21,6 +21,6 @@ server:
   port: 8070
 application:
   config:
-    client-url: http://localhost:8090/api/v1/clients
-    payement-url: http://localhost:8060/api/v1/payements
-    produit-url: http://localhost:8050/api/v1/produits
+    client-url: http://localhost:8222/api/v1/clients
+    payement-url: http://localhost:8222/api/v1/payements
+    produit-url: http://localhost:8222/api/v1/produits
