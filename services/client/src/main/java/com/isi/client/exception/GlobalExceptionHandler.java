@@ -20,6 +20,13 @@ public class GlobalExceptionHandler {
     }
 
 
+    @ExceptionHandler(EmailConflictException.class)
+    public ResponseEntity<String> handle(EmailConflictException ex){
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(ex.getMessage());
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handle (MethodArgumentNotValidException exp){
 

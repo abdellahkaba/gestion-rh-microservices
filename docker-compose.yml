@@ -1,5 +1,4 @@
 version: '3.8'
-
 services:
   postgres:
     container_name: ms_pg_sql
@@ -33,11 +32,11 @@ services:
 
   mongodb:
     container_name: ms_mongo_db
-    image: mongo
+    image: mongo:latest
     ports:
       - 27017:27017
     volumes:
-      - mongo:/data
+      - mongo:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=isi
       - MONGO_INITDB_ROOT_PASSWORD=isi

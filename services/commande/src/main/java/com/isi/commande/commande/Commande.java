@@ -32,7 +32,7 @@ public class Commande {
     @Enumerated(EnumType.STRING)
     private PayementMethode payementMethode;
     private String clientId ;
-    @OneToMany(mappedBy = "order" )
+    @OneToMany(mappedBy = "commande" )
     private List<LigneCommande> ligneCommandes;
     @CreatedDate
     @Column(updatable = false, nullable = false)

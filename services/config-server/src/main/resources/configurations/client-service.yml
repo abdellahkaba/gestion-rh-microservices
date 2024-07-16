@@ -1,12 +1,25 @@
+#spring:
+#  data:
+#    mongodb:
+#      username: isi
+#      password: isi
+#      host: localhost
+#      port: 27017
+#      database: client
+#      authentication-database: admin
+##      uri: mongodb://isi:isi@localhost:27017/client?authSource=admin
+#server:
+#  port: 8090
 spring:
-  data:
-    mongodb:
-      username: isi
-      password: isi
-      host: localhost
-      port: 27017
-      database: client
-      authentication-database: admin
-
+  datasource:
+    url: jdbc:postgresql://localhost:5432/client
+    username: isi
+    password: isi
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 server:
   port: 8090

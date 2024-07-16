@@ -16,7 +16,7 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: '*'
-        spring.json.type.mapping: commandeConfirmation:com.isi.notification.kafka.commande,payementConfirmation:com.isi.notification.kafka.payement.PayementConfirmation
+        spring.json.type.mapping: commandeConfirmation:com.isi.notification.kafka.commande.CommandeConfirmation,payementConfirmation:com.isi.notification.kafka.payement.PayementConfirmation
 
   mail:
     host: localhost
@@ -33,5 +33,6 @@ spring:
         connectiontimeout: 5000
         timeout: 3000
         writetimeout: 5000
+
 server:
   port: 8040

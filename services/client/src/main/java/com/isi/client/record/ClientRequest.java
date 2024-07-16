@@ -1,6 +1,6 @@
 package com.isi.client.record;
 
-import com.isi.client.entity.Adresse;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
@@ -12,8 +12,11 @@ public record ClientRequest(
 
          String nom,
          @NotNull(message = "Veuillez saisir l'email")
+      //   @Column(unique = true)
          @Email(message = "le mail n'est pas valide")
          String email,
-         Adresse adresse
+
+         @NotNull(message = "Veuillez saisir l'adresse")
+         String adresse
 ) {
 }
