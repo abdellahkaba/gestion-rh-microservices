@@ -2,9 +2,10 @@ package com.isi.notification.notification;
 
 import com.isi.notification.kafka.commande.CommandeConfirmation;
 import com.isi.notification.kafka.payement.PayementConfirmation;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.hibernate.annotations.GenericGenerator;
+
 
 import java.time.LocalDateTime;
 
@@ -13,14 +14,25 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Setter
-@Document
+@Entity
+
 public class Notification {
 
     @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
     private String id;
+
+    @Enumerated(EnumType.STRING)
     private NotificationType type;
     private LocalDateTime dateNotification;
-    private CommandeConfirmation commandeConfirmation;
-    private PayementConfirmation payementConfirmation;
 
+    @Embedded
+    private CommandeConfirmation commandeConfirmation;
+
+    @Embedded
+    private PayementConfirmation payementConfirmation;
 }

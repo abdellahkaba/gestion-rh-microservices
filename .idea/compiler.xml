@@ -9,7 +9,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
         <module name="notification" />
+        <module name="departement" />
         <module name="produit" />
+        <module name="employe" />
         <module name="discovery" />
         <module name="payement" />
         <module name="client" />
@@ -23,7 +25,9 @@
       <module name="client" options="-parameters" />
       <module name="commande" options="-parameters" />
       <module name="config-server" options="-parameters" />
+      <module name="departement" options="-parameters" />
       <module name="discovery" options="-parameters" />
+      <module name="employe" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="notification" options="-parameters" />
       <module name="payement" options="-parameters" />

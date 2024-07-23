@@ -9,7 +9,7 @@ public class KafkaOrderTopicConfig {
     @Bean
     public NewTopic commandeTopic(){
         return TopicBuilder
-                .name("commande-top")
+                .name("commande-topic")
                 .build();
     }
 
